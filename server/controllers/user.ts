@@ -3,7 +3,6 @@ import { Request, Response } from 'express';
 import * as passport from 'passport';
 import { User } from '../util';
 
-
 /**
  * POST /login
  * Sign in using username and password.
@@ -40,12 +39,12 @@ export let postLogin = (req: Request, res: Response) => {
           authenticated: false
         });
       }
-      let returnTo = req.session.returnTo || '/';
+      const returnTo = req.session.returnTo || '/';
       delete req.session.returnTo;
       return res.status(200).json({
         user: req.user,
         authenticated: true,
-        returnTo: returnTo
+        returnTo
       });
     });
     return null;
@@ -70,7 +69,7 @@ export let getUser = (req: Request, res: Response) => {
       authenticated: false
     });
   }
-}
+};
 
 /**
  * POST /logout
